@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-<<<<<<< Updated upstream
+
         controller = GetComponent<CharacterController>();
         spriteRend = GetComponent<SpriteRenderer>();
-=======
+
         collider1.enabled = true;
         collider2.enabled = true;
         light1.SetActive(false);
@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         spawner1.SetActive(true);
         spawner2.SetActive(false);
         spawner3.SetActive(false);
->>>>>>> Stashed changes
     }
 
     void Update()
