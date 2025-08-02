@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
         Vector3 movement = new Vector3(x, 0f, z).normalized;
+        transform.position = new Vector3(transform.position.x, 1.49f, transform.position.z);
         Move(movement);
     }
 
