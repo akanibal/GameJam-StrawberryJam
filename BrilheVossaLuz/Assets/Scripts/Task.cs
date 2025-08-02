@@ -53,7 +53,6 @@ public class Task : MonoBehaviour
         broken = false;
         brokenIcon.SetActive(broken);
         meshFilter.mesh = fixedMesh;
-        // Break();
     }
 
     void Update()
