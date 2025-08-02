@@ -140,8 +140,9 @@ public class PlayerMovement : MonoBehaviour
         spawner3.SetActive(false);
 
         light3.SetActive(true);
-    }
 
+        FixAllTasks();
+    }
 
     void DestroyAllEnemies()
     {
@@ -153,6 +154,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Debug.Log("Destru�dos " + objetos.Length + " objetos com a tag: Enemy");
+    }
+
+    void FixAllTasks()
+    {
+        GameObject[] objetos = GameObject.FindGameObjectsWithTag("Task");
+
+        foreach (GameObject obj in objetos)
+        {
+            Task task = obj.GetComponent<Task>();
+            if (task != null)
+            {
+                task.Fix();
+            }
+        }
+
+        Debug.Log("Consertados " + objetos.Length + " objetos com a tag: Task");
     }
 
     public int KillsForNextFase()

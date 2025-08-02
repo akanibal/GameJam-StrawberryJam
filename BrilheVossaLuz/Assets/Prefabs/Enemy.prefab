@@ -79,7 +79,7 @@ MonoBehaviour:
   taskList: []
   zones: []
   playerController: {fileID: 0}
-  lifes: 3
+  lifes: 2
 --- !u!54 &-6064388672024513532
 Rigidbody:
   m_ObjectHideFlags: 0

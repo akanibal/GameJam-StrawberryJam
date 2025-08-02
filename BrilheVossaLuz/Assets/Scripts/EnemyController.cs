@@ -81,9 +81,15 @@ public class EnemyController : MonoBehaviour
         {
             canBreak = true;
         }
-        while (Vector3.Distance(transform.position, target) > 0.1f)
+        Vector3 fixedTarget = new Vector3(target.x, transform.position.y, target.z);
+
+        while (Vector3.Distance(transform.position, fixedTarget) > 0.1f)
         {
-            Vector3 direction = (target - transform.position).normalized;
+            Vector3 direction = (fixedTarget - transform.position).normalized;
+
+            // Aplica o movimento só em X e Z
+            direction.y = 0;
+
             transform.position += direction * speed * speedBoost * Time.deltaTime;
             yield return null;
         }
@@ -146,7 +152,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Max: " + b.max);
 
             float randomX = Random.Range(b.min.x, b.max.x);
-            float randomY = Random.Range(b.min.y, b.max.y);
+            float randomY = transform.position.y;
             float randomZ = Random.Range(b.min.z, b.max.z);
 
             Vector3 destino = new Vector3(randomX, randomY, randomZ);
