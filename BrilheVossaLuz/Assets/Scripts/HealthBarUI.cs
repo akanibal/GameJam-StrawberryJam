@@ -31,5 +31,14 @@ public class HealthBarUI : MonoBehaviour
         Health += health;
         float newWidth = (Health / MaxHealth) * Width;
         healthBar.sizeDelta = new Vector2(newWidth, Height);
+
+        if (Health <= 0) {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+
     }
 }
