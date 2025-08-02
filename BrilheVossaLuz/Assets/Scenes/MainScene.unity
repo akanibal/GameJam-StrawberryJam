@@ -4303,7 +4303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1113243153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4663,7 +4663,7 @@ MonoBehaviour:
   Reduction: 0
   Width: 420
   Height: 30
-  gameOverPanel: {fileID: 0}
+  gameOverPanel: {fileID: 1113243152}
   healthBar: {fileID: 171150170}
 --- !u!1 &1326708450
 GameObject:
