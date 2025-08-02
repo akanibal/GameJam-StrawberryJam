@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6064388672024513532}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,9 @@ MonoBehaviour:
   limitZP: 0
   limitZN: 0
   taskList: []
+  zones: []
+  playerController: {fileID: 0}
+  lifes: 3
 --- !u!54 &-6064388672024513532
 Rigidbody:
   m_ObjectHideFlags: 0

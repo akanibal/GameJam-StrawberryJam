@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
 
     private float roamingDuration = 3f;
 
-    public int lifes = 3;
+    public int lifes = 2;
 
     void Start()
     {
@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour
             }
             else if (goToTarget)
             {
-                RandomNextPosition(); // sorteia novo destino
+                RandomNextPosition();
             }
 
             yield return null;
