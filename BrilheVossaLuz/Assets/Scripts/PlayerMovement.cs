@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer spriteRend;
     public Sprite[] sprites;
 
-    [SerializeField]
-    private Camera mainCamera;
+    public int currentIndex;
+    [SerializeField] private Camera mainCamera;
 
+    private GameObject directionPivot = default;
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
@@ -27,21 +28,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Debug.Log("attacked!");
+            // Debug.Log("attacked!");
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("interacted!");
         }
-    }
-
-    private void LateUpdate()
-    {
-        Vector3 cameraPosition = mainCamera.transform.position;
-        cameraPosition.x = transform.position.x;
-        cameraPosition.y = transform.position.y * 2;
-        transform.LookAt(cameraPosition);
-        transform.Rotate(0f, 180f, 0f);
     }
 
     void FixedUpdate()
@@ -60,10 +52,15 @@ public class PlayerMovement : MonoBehaviour
     void Move(Vector3 movement)
     {
         controller.Move(movement * moveSpeed * Time.deltaTime);
-        if (movement.x == -1) spriteRend.sprite = sprites[0];
-        else if (movement.x == 1) spriteRend.sprite = sprites[1];
-        else if (movement.z == -1) spriteRend.sprite = sprites[2];
-        else if (movement.z == 1) spriteRend.sprite = sprites[3];
+        if (movement.x == -1) currentIndex = 0; 
+        else if (movement.x == 1) currentIndex = 1;
+        else if (movement.z == -1) currentIndex = 2;
+        else if (movement.z == 1) currentIndex = 3;
+
+        spriteRend.sprite = sprites[currentIndex];
+        directionPivot = transform.GetChild(0).gameObject;
+        float[] yRotations = { 75f, 255f, -15f, 165f };
+        directionPivot.transform.rotation = Quaternion.Euler(0, yRotations[currentIndex], 0);
     }
 
     public void AddKill()
