@@ -32,13 +32,13 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator EnemyRoutine()
     {
-        // 1. Primeira movimentação aleatória
+        // 1. Primeira movimentacao aleatoria
         yield return StartCoroutine(Wander(roamingDuration, true));
 
-        // 2. Vai até uma task
+        // 2. Vai ate uma task
         yield return StartCoroutine(GoToTarget(taskList[Random.Range(0, taskList.Length)].transform.position, true));
 
-        // 3. Segunda movimentação aleatória
+        // 3. Segunda movimentacao aleatoria
         yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(Wander(roamingDuration));
@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
         // 4. Vai para a "morte"
         yield return StartCoroutine(GoToTarget(GerarDestinoAleatorio(zones)));
 
-        Destroy(gameObject); // lógica de fim
+        Destroy(gameObject); // logica de fim
     }
 
     IEnumerator Wander(float duration, bool goToTarget = false)
@@ -128,7 +128,7 @@ public class EnemyController : MonoBehaviour
     {
         if (zones == null || zones.Length == 0)
         {
-            Debug.LogWarning("Lista de zonas está vazia ou nula.");
+            Debug.LogWarning("Lista de zonas esta vazia ou nula.");
             return transform.position;
         }
 
@@ -151,12 +151,12 @@ public class EnemyController : MonoBehaviour
 
             Vector3 destino = new Vector3(randomX, randomY, randomZ);
 
-            Debug.Log("Destino aleatório gerado: " + destino);
+            Debug.Log("Destino aleatorio gerado: " + destino);
 
             return destino;
         }
 
-        Debug.LogWarning("Renderer não encontrado no objeto: " + alvo.name);
+        Debug.LogWarning("Renderer nao encontrado no objeto: " + alvo.name);
         return transform.position;
     }
 
