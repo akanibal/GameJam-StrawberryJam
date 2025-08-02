@@ -20,7 +20,7 @@ public class HealthBarUI : MonoBehaviour
             SetHealth(0.25f * Reduction * Time.deltaTime * -1);
         }
         if (Health <= 0)
-        { 
+        {
             // Game Over
         }
     }
