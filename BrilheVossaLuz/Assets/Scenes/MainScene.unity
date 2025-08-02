@@ -212,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638183714483786096, guid: 6ee5b37c4ffe8a347986fd38cca238fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.24
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 6638183714483786096, guid: 6ee5b37c4ffe8a347986fd38cca238fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   playerIn: 0
   enemyIn: 0
   repairCount: 1
-  maxRepairCount: 0
+  maxRepairCount: 3
 --- !u!65 &1492943961
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -48,7 +48,6 @@ public class Task : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // 
         if (other.gameObject.tag == "Player")
         {
             playerIn = true;

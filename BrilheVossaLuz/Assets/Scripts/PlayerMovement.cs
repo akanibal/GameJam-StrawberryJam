@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,11 +8,17 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference interact;
     public SpriteRenderer spriteRend;
     public Sprite[] sprites;
+
+    [SerializeField]
+    private Camera mainCamera;
+
+
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
 
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         spriteRend = GetComponent<SpriteRenderer>();
     }
 
@@ -27,21 +34,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Rotate()
+    private void LateUpdate()
     {
-        
+        Vector3 cameraPosition = mainCamera.transform.position;
+        cameraPosition.x = transform.position.x;
+        cameraPosition.y = transform.position.y * 2;
+        transform.LookAt(cameraPosition);
+        transform.Rotate(0f, 180f, 0f);
     }
+
     void FixedUpdate()
+    {
+        GetMoveInput();
+    }
+
+    void GetMoveInput()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
         Vector3 movement = new Vector3(x, 0f, z).normalized;
+        Move(movement);
+    }
+
+    void Move(Vector3 movement)
+    {
         controller.Move(movement * moveSpeed * Time.deltaTime);
-        if (movement.x == -1)
-        {
-            spriteRend.sprite = sprites[0];
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
+        if (movement.x == -1) spriteRend.sprite = sprites[0];
         else if (movement.x == 1) spriteRend.sprite = sprites[1];
         else if (movement.z == -1) spriteRend.sprite = sprites[2];
         else if (movement.z == 1) spriteRend.sprite = sprites[3];
