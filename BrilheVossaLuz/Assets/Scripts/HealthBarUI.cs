@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class HealthBarUI : MonoBehaviour
 {
     public float Health, MaxHealth, Reduction, Width, Height;
+    public GameObject gameOverPanel;
+    bool isPaused;
 
     [SerializeField] private RectTransform healthBar;
 
@@ -11,6 +13,7 @@ public class HealthBarUI : MonoBehaviour
     {
         SetMaxHealth(100);
         SetHealth(100.00f);
+        isPaused = false;
     }
 
     public void Update()
@@ -22,6 +25,15 @@ public class HealthBarUI : MonoBehaviour
         if (Health <= 0)
         {
             // Game Over
+        }
+
+        if (isPaused == true)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
     }
 
@@ -43,6 +55,7 @@ public class HealthBarUI : MonoBehaviour
 
     void GameOver()
     {
-
+        gameOverPanel.SetActive(true);
+        isPaused = true;
     }
 }
