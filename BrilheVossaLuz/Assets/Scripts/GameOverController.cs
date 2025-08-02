@@ -3,7 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject gameOverPanel;
+    void Start()
+    {
+        gameOverPanel.SetActive(false);
+    }
     public void Return()
     {
         SceneManager.LoadScene(1);
