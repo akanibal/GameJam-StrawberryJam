@@ -4,9 +4,9 @@ using UnityEngine.Rendering;
 
 public enum TaskType
 {
-    Banheiro,
-    Cozinha,
-    Sala
+    Bathroom,
+    Kitchen,
+    LivingRoom
 }
 public class Task : MonoBehaviour
 {
@@ -23,23 +23,26 @@ public class Task : MonoBehaviour
 
     public GameObject healthBar = default;
 
+    public int damageValue;
+
     void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
         brokenIcon = transform.GetChild(0).gameObject;
+        type = (TaskType)System.Enum.Parse(typeof(TaskType), transform.parent.gameObject.name);
         if (meshFilter != null)
         {
             fixedMesh = meshFilter.mesh;
         }
         switch (type)
         {
-            case TaskType.Banheiro:
+            case TaskType.Bathroom:
                 brokenIcon.GetComponent<BrokenIcon>().setSprite(0);
                 break;
-            case TaskType.Cozinha:
+            case TaskType.Kitchen:
                 brokenIcon.GetComponent<BrokenIcon>().setSprite(1);
                 break;
-            case TaskType.Sala:
+            case TaskType.LivingRoom:
                 brokenIcon.GetComponent<BrokenIcon>().setSprite(2);
                 break;
             default:
@@ -68,7 +71,7 @@ public class Task : MonoBehaviour
         broken = true;
         brokenIcon.SetActive(broken);
         meshFilter.mesh = brokenMesh;
-        healthBar.GetComponent<HealthBarUI>().Reduction += 1;
+        healthBar.GetComponent<HealthBarUI>().Reduction += damageValue;
         Debug.Log("Break");
     }
 
@@ -77,7 +80,7 @@ public class Task : MonoBehaviour
         broken = false;
         brokenIcon.SetActive(broken);
         meshFilter.mesh = fixedMesh;
-        healthBar.GetComponent<HealthBarUI>().Reduction -= 1;
+        healthBar.GetComponent<HealthBarUI>().Reduction -= damageValue;
         Debug.Log("Fix");
     }
 

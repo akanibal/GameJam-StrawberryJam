@@ -37,8 +37,7 @@ public class EnemyController : MonoBehaviour
 
         // 2. Vai ate uma task
         yield return StartCoroutine(GoToTarget(taskList[Random.Range(0, taskList.Length)].transform.position, true));
-
-        // 3. Segunda movimentacao aleatoria
+        
         yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(Wander(roamingDuration));
@@ -87,12 +86,14 @@ public class EnemyController : MonoBehaviour
         {
             Vector3 direction = (fixedTarget - transform.position).normalized;
 
-            // Aplica o movimento só em X e Z
+            // Aplica o movimento sï¿½ em X e Z
             direction.y = 0;
 
             transform.position += direction * speed * speedBoost * Time.deltaTime;
             yield return null;
         }
+
+        
     }
 
     void Update() {

@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     private float attackDuration = 0.15f;
     private float attackTimer = 0f;
     private float attackCooldown = 0f;
+
+    public float cooldownTimer = 1f;
     void Start()
     {
         attackArea = transform.GetChild(0).GetChild(0).gameObject;
@@ -40,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
         if (attackCooldown <= 0)
         {
             attacking = true;
-            attackCooldown = 1;
+            attackCooldown = cooldownTimer;
             attackArea.SetActive(attacking);
 
         }

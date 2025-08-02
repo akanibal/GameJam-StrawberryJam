@@ -1,8 +1,14 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+    }
     private void LateUpdate()
     {
         Vector3 cameraPosition = mainCamera.transform.position;

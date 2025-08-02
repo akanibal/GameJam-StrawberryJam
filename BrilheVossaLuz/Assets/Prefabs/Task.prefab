@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4354748598218924706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 19472240351633915}
+  m_Layer: 0
+  m_Name: BreakArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &19472240351633915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354748598218924706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.74, y: 0.03, z: -0.014}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9188567901860320199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4506013237313980531
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7558704238575253160}
+  - {fileID: 19472240351633915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2493615614551872320
@@ -109,7 +141,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.3}
+  m_Size: {x: 1.3, y: 1.3, z: 1.6}
   m_Center: {x: -0.3, y: 0, z: 0}
 --- !u!114 &1679111885104441622
 MonoBehaviour:
@@ -127,11 +159,13 @@ MonoBehaviour:
   brokenMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   fixedMesh: {fileID: 0}
   type: 2
-  broken: 1
+  broken: 0
   playerIn: 0
   enemyIn: 0
   repairCount: 1
   maxRepairCount: 3
+  healthBar: {fileID: 0}
+  damageValue: 3
 --- !u!65 &7712513575879521620
 BoxCollider:
   m_ObjectHideFlags: 0

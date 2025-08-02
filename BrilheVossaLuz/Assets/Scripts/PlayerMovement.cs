@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
         spawner1.SetActive(true);
         spawner2.SetActive(false);
         spawner3.SetActive(false);
+
+        mainCamera.GetComponent<MainCamera>().changeCamera(0);
     }
 
     void Update()
@@ -120,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         light1.SetActive(true);
         spawner2.SetActive(true);
 
-        //mover a camera
+        mainCamera.GetComponent<MainCamera>().changeCamera(1);
     }
 
     void FaseThree() {
@@ -129,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         light2.SetActive(true);
         spawner3.SetActive(true);
 
-        //mover a camera
+        mainCamera.GetComponent<MainCamera>().changeCamera(2);
     }
 
     void EndGame() {
@@ -163,10 +165,9 @@ public class PlayerMovement : MonoBehaviour
         foreach (GameObject obj in objetos)
         {
             Task task = obj.GetComponent<Task>();
-            if (task != null)
-            {
+            
                 task.Fix();
-            }
+            
         }
 
         Debug.Log("Consertados " + objetos.Length + " objetos com a tag: Task");
