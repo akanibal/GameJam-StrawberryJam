@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
         spriteRend.sprite = sprites[currentIndex];
         directionPivot = transform.GetChild(0).gameObject;
-        float[] yRotations = { 75f, 255f, -15f, 165f };
+        float[] yRotations = { 90f, 270f, 0f, 180f };
         directionPivot.transform.rotation = Quaternion.Euler(0, yRotations[currentIndex], 0);
     }
 
@@ -152,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(obj);
         }
 
-        Debug.Log("Destruídos " + objetos.Length + " objetos com a tag: Enemy");
+        Debug.Log("Destruï¿½dos " + objetos.Length + " objetos com a tag: Enemy");
     }
 
     public int KillsForNextFase()
