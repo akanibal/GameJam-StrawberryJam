@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public enum TaskType
 {
@@ -62,6 +60,7 @@ public class Task : MonoBehaviour
             if (playerIn) repairCount--;
             if (repairCount == 0) Fix();
         }
+        
     }
 
     public void Break()
