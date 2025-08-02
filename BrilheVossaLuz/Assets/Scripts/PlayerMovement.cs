@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,12 +17,41 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
-    public int kills = 0;
+    int kills = 0;
+
+    public Collider collider1;
+    public Collider collider2;
+
+    public GameObject light1;
+    public GameObject light2;
+    public GameObject light3;
+
+    public GameObject spawner1;
+    public GameObject spawner2;
+    public GameObject spawner3;
+
+    public int killsLimit1 = 5;
+    public int killsLimit2 = 10;
+    public int killsLimit3 = 15;
+
+    public TextMeshProUGUI killsText;
+
 
     void Start()
     {
+
         controller = GetComponent<CharacterController>();
         spriteRend = GetComponent<SpriteRenderer>();
+
+        collider1.enabled = true;
+        collider2.enabled = true;
+        light1.SetActive(false);
+        light2.SetActive(false);
+        light3.SetActive(false);
+
+        spawner1.SetActive(true);
+        spawner2.SetActive(false);
+        spawner3.SetActive(false);
     }
 
     void Update()
@@ -33,6 +63,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("interacted!");
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AddKill();
+            Debug.Log("Kills:" + kills);
         }
     }
 
@@ -66,24 +102,74 @@ public class PlayerMovement : MonoBehaviour
     public void AddKill()
     {
         kills++;
-        if (kills == 5) {
+        UpdateKillsUI();
+
+        if (kills == killsLimit1) {
             FaseTwo();
-        } else if (kills == 10) {
+        } else if (kills == killsLimit2) {
             FaseThree();
-        } else if (kills == 15) {
+        } else if (kills == killsLimit3) {
             EndGame();
         }
     }
 
     void FaseTwo() {
+        DestroyAllEnemies();
 
+        collider1.enabled = false;
+        light1.SetActive(true);
+        spawner2.SetActive(true);
+
+        //mover a camera
     }
 
-    void FaseThree() { 
+    void FaseThree() {
+        DestroyAllEnemies();
+        collider2.enabled = false;
+        light2.SetActive(true);
+        spawner3.SetActive(true);
 
+        //mover a camera
     }
 
-    void EndGame() { 
-    
+    void EndGame() {
+        DestroyAllEnemies();
+
+        spawner1.SetActive(false);
+        spawner2.SetActive(false);
+        spawner3.SetActive(false);
+
+        light3.SetActive(true);
+    }
+
+
+    void DestroyAllEnemies()
+    {
+        GameObject[] objetos = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject obj in objetos)
+        {
+            Destroy(obj);
+        }
+
+        Debug.Log("Destruídos " + objetos.Length + " objetos com a tag: Enemy");
+    }
+
+    public int KillsForNextFase()
+    {
+        if (kills < killsLimit1)
+            return killsLimit1 - kills;
+        else if (kills < killsLimit2)
+            return killsLimit2 - kills;
+        else if (kills < killsLimit3)
+            return killsLimit3 - kills;
+        else
+            return 0;
+    }
+
+    void UpdateKillsUI()
+    {
+        int restantes = KillsForNextFase();
+        killsText.text = restantes + "x";
     }
 }

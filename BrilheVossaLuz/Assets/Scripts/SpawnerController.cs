@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-
     public float spawnInterval = 100f;
 
     private float timer;
@@ -14,11 +13,9 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject[] taskList;
 
-    public GameObject[] zones;
+    public GameObject[] zones; //Objeto qualquer com collider
 
     public float spawnY;
-
-    public bool spawn;
 
     public float spawXP;
     public float spawXN;
@@ -26,21 +23,17 @@ public class SpawnerController : MonoBehaviour
     public float spawZN;
 
     void Start() {
-        spawn = true;
         enemyScript = GetComponent<EnemyController>();
         SpawnEnemy();
     }
 
     void Update()
     {
-        if (spawn)
+        timer += Time.deltaTime;
+        if (timer >= spawnInterval)
         {
-            timer += Time.deltaTime;
-            if (timer >= spawnInterval)
-            {
-                SpawnEnemy();
-                timer = 0f;
-            }
+            SpawnEnemy();
+            timer = 0f;
         }
     }
 
@@ -61,11 +54,4 @@ public class SpawnerController : MonoBehaviour
         enemyScript.zones = zones;
         enemyScript.PlayerReference(playerController);
     }
-
-    public void disableSpawn()
-    {
-        spawn = false;
-    }
-
-  
 }
