@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject spawner1;
     public GameObject spawner2;
     public GameObject spawner3;
+
+    public int killsLimit1 = 5;
+    public int killsLimit2 = 10;
+    public int killsLimit3 = 15;
+
+    public TextMeshProUGUI killsText;
+
 
     void Start()
     {
@@ -97,11 +105,13 @@ public class PlayerMovement : MonoBehaviour
     public void AddKill()
     {
         kills++;
-        if (kills == 5) {
+        UpdateKillsUI();
+
+        if (kills == killsLimit1) {
             FaseTwo();
-        } else if (kills == 10) {
+        } else if (kills == killsLimit2) {
             FaseThree();
-        } else if (kills == 15) {
+        } else if (kills == killsLimit3) {
             EndGame();
         }
     }
@@ -112,6 +122,8 @@ public class PlayerMovement : MonoBehaviour
         collider1.enabled = false;
         light1.SetActive(true);
         spawner2.SetActive(true);
+
+        //mover a camera
     }
 
     void FaseThree() {
@@ -119,6 +131,8 @@ public class PlayerMovement : MonoBehaviour
         collider2.enabled = false;
         light2.SetActive(true);
         spawner3.SetActive(true);
+
+        //mover a camera
     }
 
     void EndGame() {
@@ -142,5 +156,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Debug.Log("Destruídos " + objetos.Length + " objetos com a tag: Enemy");
+    }
+
+    public int KillsForNextFase()
+    {
+        if (kills < killsLimit1)
+            return killsLimit1 - kills;
+        else if (kills < killsLimit2)
+            return killsLimit2 - kills;
+        else if (kills < killsLimit3)
+            return killsLimit3 - kills;
+        else
+            return 0;
+    }
+
+    void UpdateKillsUI()
+    {
+        int restantes = KillsForNextFase();
+        killsText.text = restantes + "x";
     }
 }
