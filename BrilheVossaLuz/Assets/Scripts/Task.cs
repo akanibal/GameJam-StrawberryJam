@@ -32,7 +32,7 @@ public class Task : MonoBehaviour
         }
     }
 
-    void Break()
+    public void Break()
     {
         repairCount = maxRepairCount;
         broken = true;

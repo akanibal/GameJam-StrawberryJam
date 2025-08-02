@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite[] sprites;
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
+    public int kills = 0;
 
     void Start()
     {
@@ -45,5 +46,29 @@ public class PlayerMovement : MonoBehaviour
         else if (movement.x == 1) spriteRend.sprite = sprites[1];
         else if (movement.z == -1) spriteRend.sprite = sprites[2];
         else if (movement.z == 1) spriteRend.sprite = sprites[3];
+    }
+
+    public void AddKill()
+    {
+        kills++;
+        if (kills == 5) {
+            FaseTwo();
+        } else if (kills == 10) {
+            FaseThree();
+        } else if (kills == 15) {
+            EndGame();
+        }
+    }
+
+    void FaseTwo() {
+
+    }
+
+    void FaseThree() { 
+
+    }
+
+    void EndGame() { 
+    
     }
 }
