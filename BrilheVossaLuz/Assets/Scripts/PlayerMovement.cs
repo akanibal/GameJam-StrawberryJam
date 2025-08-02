@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -135,7 +136,8 @@ public class PlayerMovement : MonoBehaviour
         mainCamera.GetComponent<MainCamera>().changeCamera(2);
     }
 
-    void EndGame() {
+    void EndGame()
+    {
         DestroyAllEnemies();
 
         spawner1.SetActive(false);
@@ -145,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
         light3.SetActive(true);
 
         FixAllTasks();
+
+        SceneManager.LoadScene(2);
     }
 
     void DestroyAllEnemies()
